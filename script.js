@@ -1,13 +1,18 @@
+let humanScore = 0;
+let computerScore = 0;
+
 function getComputerChoice() {
     let choice = Math.floor(Math.random() * 1000);
     
     if (choice <= 333) {
-        console.log('Rock!');
+        console.log('Computer chooses Rock!');
     } else if (choice >= 334 && choice <= 666) {
-        console.log('Paper!');
+        console.log('Computer chooses Paper!');
     } else if (choice >= 667) {
-        console.log('Scissors!');
-    }
+        console.log('Computer chooses Scissors!');
+    };
+
+    return choice;
 };
 
 function getHumanChoice() {
@@ -21,6 +26,25 @@ function getHumanChoice() {
     } else {
         console.log('Wrong input. Reload the page and try again!');
     }
+
+    return choice2;
 };
 
-getHumanChoice();
+function playRound(humanChoice, computerChoice) {
+    if (humanChoice === 0 && computerChoice <= 333) {
+        console.log('It is a tie!');
+    } else if (humanChoice === 0 && computerChoice >= 334 && computerChoice <= 666) {
+        console.log('You loose! Paper beats Rock!');
+    }
+    else if (humanChoice === 0 && computerChoice >= 667) {
+        console.log('You win! Rock beats Scissors');
+    }
+}
+
+const humanSelection = getHumanChoice();
+const computerSelection = getComputerChoice();
+
+playRound(humanSelection, computerSelection);
+
+
+
