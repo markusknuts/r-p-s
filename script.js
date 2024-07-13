@@ -1,54 +1,49 @@
+function getHumanChoice() {
+    while (true) { // keeps loop going until valid response is input
+    let answer = prompt("Let's play Rock, Paper, Scissors! Please choose one of the following.").toLowerCase(); //case-insensitive prompt to user
+    if (answer == "rock" || answer == "paper" || answer == "scissors") { // conditional to allow user to only input the given options
+        return answer;
+    } else {
+        alert('Invalid choice! Please choose either "rock", "paper", or "scissors".');
+    }
+}
+}
+// randomly chooses an option for the computer 
+function getComputerChoice() {
+const choices = ['rock', 'paper', 'scissors']; // set variables in array for computer 
+const randomIndex = Math.floor(Math.random() * choices.length); // create random index 
+return choices[randomIndex]; // return the random index of choices 
+}
+
+
+function playGame() { // Set main function to run the game and set score variables to 0
 let humanScore = 0;
 let computerScore = 0;
 
-function getComputerChoice() {
-    let choice = Math.floor(Math.random() * 1000);
-    
-    if (choice <= 333) {
-        console.log('Computer chooses Rock!');
-    } else if (choice >= 334 && choice <= 666) {
-        console.log('Computer chooses Paper!');
-    } else if (choice >= 667) {
-        console.log('Computer chooses Scissors!');
-    };
-
-    return choice;
-};
-
-function getHumanChoice() {
-    let choice2 = prompt('Choose between Rock, Paper or Scissors!');
-    if (choice2.toLowerCase() === 'rock') {
-        choice2 = 0;
-    } else if (choice2.toLowerCase() === 'paper') {
-        choice2 = 1;
-    } else if (choice2.toLowerCase() === 'scissors') {
-        choice2 = 2;
+function playRound(humanChoice, computerChoice) { // use two parameters (humchoice and comchoice) as arguments for conditionals 
+    if (humanChoice == "rock" && computerChoice == "scissors" || humanChoice == "paper" && computerChoice == "rock" || humanChoice == "scissors" && computerChoice == "paper") {
+        console.log("You win! " + humanChoice + " beats " + computerChoice);
+        humanScore += 1; //conditional if the human wins, log a string and add one point 
+    } else if (computerChoice == "rock" && humanChoice == "scissors" || computerChoice == "paper" && humanChoice == "rock" || computerChoice == "scissors" && humanChoice == "paper") {
+        console.log("You lose! " + computerChoice + " beats " + humanChoice);
+        computerScore += 1; // conditional if the computer wins, log a string and add one point 
     } else {
-        console.log('Wrong input. Reload the page and try again!');
+        console.log("It's a tie!") // if neither conditionals are true, log a string (its a tie)
     }
-
-    return choice2;
-};
-
-function playRound(humanChoice, computerChoice) {
-    if (humanChoice === 0 && computerChoice <= 333) {
-        console.log('It is a tie!');
-    } else if (humanChoice === 0 && computerChoice >= 334 && computerChoice <= 666) {
-        console.log('You loose! Paper beats Rock!');
-        computerScore = computerScore + 1;
-    } else if (humanChoice === 0 && computerChoice >= 667) {
-        console.log('You win! Rock beats Scissors');
-        humanScore = humanScore + 1;
-    }
-    console.log(humanScore);
-    console.log(computerScore);
 }
 
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice();
+while (humanScore < 5 && computerScore < 5) { // 'while' loop to keep game going until one of the scores reaches 5 
+    playRound(getHumanChoice(), getComputerChoice());
+}
 
-playRound(humanSelection, computerSelection);
+if (humanScore = 5) { // conditional to end the game once either human or computer score reaches 5 
+    console.log("You beat the computer! " + humanScore + " to " + computerScore);
+} else if (computerScore = 5) {
+    console.log("The computer beat you! " + computerScore + " to " + humanScore);
+} else {
+    console.log("Nice round! Keep it going!");
+}
 
- 
+}
 
-
+playGame();
