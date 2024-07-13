@@ -35,10 +35,13 @@ function playRound(humanChoice, computerChoice) {
         console.log('It is a tie!');
     } else if (humanChoice === 0 && computerChoice >= 334 && computerChoice <= 666) {
         console.log('You loose! Paper beats Rock!');
-    }
-    else if (humanChoice === 0 && computerChoice >= 667) {
+        computerScore = computerScore + 1;
+    } else if (humanChoice === 0 && computerChoice >= 667) {
         console.log('You win! Rock beats Scissors');
+        humanScore = humanScore + 1;
     }
+    console.log(humanScore);
+    console.log(computerScore);
 }
 
 const humanSelection = getHumanChoice();
@@ -46,5 +49,6 @@ const computerSelection = getComputerChoice();
 
 playRound(humanSelection, computerSelection);
 
+ 
 
 
